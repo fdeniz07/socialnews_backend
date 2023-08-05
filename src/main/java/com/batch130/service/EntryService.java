@@ -23,44 +23,36 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Getter
 @Setter
-public class EntryService  implements Serializable {
+public class EntryService implements Serializable {
 
     private final EntryRepository entryRepository;
-
     private final EntryMapper entryMapper;
 
-    @Autowired
-    private final ModelMapper modelMapper;
-
-
     //NOt: add()***************************************************************
-
 
     public EntryResponse add(EntryRequest entryRequest) {
 
         // ayni subject var mi yok mu kontrolu
-     if(entryRepository.existsBySubject(entryRequest.getSubject())){
-         throw new ConflictException(String.format(ErrorMessages.ALREADY_ENTRY_EXISTS_SUBJECT));
-     }
+        if (entryRepository.existsBySubject(entryRequest.getSubject())) {
+            throw new ConflictException(String.format(ErrorMessages.ALREADY_ENTRY_EXISTS_SUBJECT));
+        }
 
+        Entry entry = entryMapper.convertRequestToEntry(entryRequest);
 
-       Entry entry = entryMapper.convertRequestToEntry(entryRequest);
-
-       return entryMapper.convertEntryToResponse(entryRepository.save(entry));
-
+        return entryMapper.convertEntryToResponse(entryRepository.save(entry));
     }
 
 
     public List<EntryResponse> getAllEntry() {
 
-       List<EntryResponse> entries= entryRepository.findAll()
+        List<EntryResponse> entries = entryRepository.findAll()
                 .stream()
                 .map(entryMapper::convertEntryToResponse)
                 .collect(Collectors.toList());
 
-       if (entries.isEmpty()){
-           throw new ResourceNotFoundException(String.format(ErrorMessages.ENTRY_NOT_FOUND));
-       }
+        if (entries.isEmpty()) {
+            throw new ResourceNotFoundException(String.format(ErrorMessages.ENTRY_NOT_FOUND));
+        }
         return entries;
     }
 }

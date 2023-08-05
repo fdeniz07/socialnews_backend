@@ -27,8 +27,6 @@ public class EntryMapper {
 
     public Entry convertRequestToEntry(EntryRequest entryRequest){
         Entry entry = modelMapper.map(entryRequest, Entry.class);
-        entry.setCreatedDate( LocalDateTime.now());
-        entry.setModifiedDate(LocalDateTime.now());
         entry.setActive(true);
         entry.setDeleted(false);
         return entry;
