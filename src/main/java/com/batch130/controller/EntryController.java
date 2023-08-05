@@ -31,6 +31,7 @@ public class EntryController {
 
         //!! Pageable olacak - core da tasarlanacak eger olmaz ise //@PageableDefault yapisini kullanabiliriz
         return entryService.getAllEntry();
+        //test
     }
 
 
