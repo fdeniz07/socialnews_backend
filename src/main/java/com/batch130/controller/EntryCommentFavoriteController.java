@@ -16,14 +16,14 @@ public class EntryCommentFavoriteController {
 
     private final EntryCommentFavoriteService service;
 
-    //Not: add() ******************************************************
+    //Not: add() *******************************************************
     @PostMapping("/add")
     public ResponseEntity<?> add(HttpServletRequest httpServlet){
         String email = httpServlet.getRemoteUser();
         return ResponseEntity.ok(service.add(email));
     }
 
-    //Not: delete() ***************************************************
+    //Not: delete() ****************************************************
     @DeleteMapping("/delete")
     public ResponseEntity<?> delete(@PathVariable Long id){
         return ResponseEntity.ok(service.delete(id));
