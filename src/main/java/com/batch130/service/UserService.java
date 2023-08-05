@@ -1,5 +1,6 @@
 package com.batch130.service;
 
+import com.batch130.entity.concretes.User;
 import com.batch130.payload.request.UserRequest;
 import com.batch130.payload.response.UserResponse;
 import com.batch130.repository.UserRepository;
@@ -21,7 +22,20 @@ public class UserService {
         return null;
     }
 
-    public Object getById(Long userId) {
+    public UserResponse getById(Long userId) {
+        return null;
 
+    }
+
+    public UserResponse update(UserRequest userRequest, Long userId) {
+        return null;
+    }
+
+    public UserResponse delete(Long userId) {
+        return null;
+    }
+
+    public UserResponse getMyProfile(String username) {
+        return null;
     }
 }
