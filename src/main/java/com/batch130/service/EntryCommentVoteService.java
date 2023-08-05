@@ -13,20 +13,18 @@ import org.springframework.stereotype.Service;
 public class EntryCommentVoteService {
    private final EntryCommentVoteRepository entryCommentVoteRepository;
 
-    public ResponseEntity<EntryCommentVoteResponse> update(EntryCommentVoteRequest request, Long commentId) {
-     return  entryCommentVoteRepository.save();
-    }
+
 
 
     public EntryCommentVoteResponse add(EntryCommentVoteRequest request) {
-        return entryCommentVoteRepository.save();
+        return null;
     }
     public ResponseEntity<?> deleteComment(Long commentId) {
-      return entryCommentVoteRepository.deleteById();
+      return null;
     }
 
     public ResponseEntity<EntryCommentVoteResponse> getEntryVoteByCommentId(Long commentId) {
-        return entryCommentVoteRepository.findById();
+        return null;
     }
 
 
