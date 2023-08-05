@@ -3,14 +3,13 @@ package com.batch130.payload.response;
 
 import com.batch130.entity.enums.VoteType;
 import com.batch130.payload.response.abstracts.BaseEntityResponse;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
