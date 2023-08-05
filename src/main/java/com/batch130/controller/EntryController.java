@@ -29,6 +29,7 @@ public class EntryController {
     @GetMapping("/getAll")
     public List<EntryResponse> getAllEntry(){
 
+        //!! Pageable olacak - core da tasarlanacak eger olmaz ise //@PageableDefault yapisini kullanabiliriz
         return entryService.getAllEntry();
     }
 
