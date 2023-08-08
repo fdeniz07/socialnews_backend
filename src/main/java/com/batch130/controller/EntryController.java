@@ -1,20 +1,15 @@
 package com.batch130.controller;
 
-import com.batch130.entity.concretes.Entry;
 import com.batch130.payload.request.EntryRequest;
 import com.batch130.payload.response.EntryResponse;
 import com.batch130.service.EntryService;
-import jakarta.persistence.Column;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/entry")
@@ -31,7 +26,12 @@ public class EntryController {
 
     }
 
+    @GetMapping("/getAll")
+    public List<EntryResponse> getAllEntry(){
 
+        //!! Pageable olacak - core da tasarlanacak eger olmaz ise //@PageableDefault yapisini kullanabiliriz
+        return entryService.getAllEntry();
+    }
 
 
 
