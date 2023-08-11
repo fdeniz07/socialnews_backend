@@ -20,6 +20,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
@@ -29,14 +30,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Getter
 @Setter
+@Transactional //Update ve delete islemlerinde kullanmak gerekli
 public class EntryService implements Serializable {
 
     private final EntryRepository entryRepository;
     private final UserService userService;
     private final EntryMapper entryMapper;
 
-    //NOt: add()***************************************************************
-
+    //NOT: add()***************************************************************
     public EntryResponse add(EntryRequest entryRequest) {
 
         // ayni subject var mi yok mu kontrolu
@@ -49,7 +50,7 @@ public class EntryService implements Serializable {
         return entryMapper.convertEntryToResponse(entryRepository.save(entry));
     }
 
-
+    //NOT: getAllEntry()***************************************************************
     public List<EntryResponse> getAllEntry() {
 
         List<EntryResponse> entries = entryRepository.findAll()
@@ -63,6 +64,7 @@ public class EntryService implements Serializable {
         return entries;
     }
 
+    //NOT: getByUserEntry()***************************************************************
     public List<EntryResponse> getByUserId(Long id) {
 
         //!! Bu id kullanici sistemde mevcut mu kontrolü
@@ -74,13 +76,14 @@ public class EntryService implements Serializable {
                 .collect(Collectors.toList());
     }
 
+    //NOT: update()***************************************************************
     public ResponseMessage<EntryResponse> update(Long entryId, EntryRequest request) {
 
         //Entry var mi kontrolü
         Entry entry = entryRepository.findById(entryId)
-                .orElseThrow(()->new ResourceNotFoundException(ErrorMessages.ENTRY_NOT_FOUND));
+                .orElseThrow(() -> new ResourceNotFoundException(ErrorMessages.ENTRY_NOT_FOUND));
 
-        Entry updatedEntry = entryMapper.convertRequestToEntryUpdate(request,entryId);
+        Entry updatedEntry = entryMapper.convertRequestToEntryUpdate(request, entryId);
         entryRepository.save(updatedEntry);
 
         return ResponseMessage.<EntryResponse>builder()
@@ -90,33 +93,34 @@ public class EntryService implements Serializable {
                 .build();
     }
 
-    public ResponseMessage<EntryResponse> softDelete(Long entryId, EntryRequestForSoftDelete request) {
+    //NOT: softDelete()***************************************************************
+    public ResponseMessage<EntryResponse> softDelete(Long entryId) {
 
         //Entry var mi kontrolü
         Entry entry = entryRepository.findById(entryId)
-                .orElseThrow(()->new ResourceNotFoundException(ErrorMessages.ENTRY_NOT_FOUND));
+                .orElseThrow(() -> new ResourceNotFoundException(ErrorMessages.ENTRY_NOT_FOUND));
 
-        Entry softDeletedEntry = entryMapper.convertRequestToEntryForSoftDelete(request,entryId);
+        //!!!Softdelete islemlerinde verinin silinmesi söz konusu degildir. Bu nedenle verinin görünürlügü update islemi yapar gibi degistirilir.
+       entryRepository.softDeletedById(entryId);
 
         return ResponseMessage.<EntryResponse>builder()
-                .object(entryMapper.convertEntryToResponse(softDeletedEntry))
                 .message(SuccessMessages.ENTRY_SUCCESSFULLY_DELETED)
                 .httpStatus(HttpStatus.OK)
                 .build();
     }
 
-//    public ResponseMessage<?> softDelete(Long entryId,EntryRequest request) {
-//
-//        //Entry var mi kontrolü
-//        Entry entry = entryRepository.findById(entryId)
-//                .orElseThrow(()->new ResourceNotFoundException(ErrorMessages.ENTRY_NOT_FOUND));
-//
-//        Entry softDeletedEntry = entryMapper.convertRequestToEntryForSoftDelete(request,entryId);
-//
-//        return ResponseMessage.<EntryResponse>builder()
-//                .object(entryMapper.convertEntryToResponse(softDeletedEntry))
-//                .message(SuccessMessages.ENTRY_SUCCESSFULLY_UPDATED)
-//                .httpStatus(HttpStatus.OK)
-//                .build();
-//    }
+    //NOT: hardDelete()***************************************************************
+    public ResponseMessage<?> hardDelete(Long entryId) {
+
+        //Entry var mi kontrolü
+        Entry entry = entryRepository.findById(entryId)
+                .orElseThrow(()->new ResourceNotFoundException(ErrorMessages.ENTRY_NOT_FOUND));
+
+        entryRepository.deleteById(entryId);
+
+        return ResponseMessage.<EntryResponse>builder()
+                .message(SuccessMessages.ENTRY_SUCCESSFULLY_DELETED_FROM_DATABASE)
+                .httpStatus(HttpStatus.OK)
+                .build();
+    }
 }
