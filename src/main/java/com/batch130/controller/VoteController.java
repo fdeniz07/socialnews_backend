@@ -41,9 +41,9 @@ public class VoteController {
 //        return voteService.updateVote(request);
 //    }
 
-    @DeleteMapping
-    public ResponseEntity<?> deleteVote(@PathVariable("id") Long id) {
-        return voteService.deleteVote(id);
-    }
+//    @DeleteMapping
+//    public ResponseEntity<?> deleteVote(@PathVariable("id") Long id) {
+//        return voteService.deleteVote(id);
+//    }
 
 }

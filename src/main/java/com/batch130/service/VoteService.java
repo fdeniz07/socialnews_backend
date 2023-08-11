@@ -13,22 +13,22 @@ public class VoteService {
 
     private final VoteRepository voteRepository;
 
-    public ResponseEntity<?> addVote(VoteRequest request) {
-        return null;
-    }
-
-
-    public ResponseEntity<?> getAllById(Long id) {
-        return null;
-    }
-
-    public ResponseEntity<?> updateVote(VoteUpdateRequest request) {
-        return null;
-    }
-
-    public ResponseEntity<?> deleteVote(Long id) {
-        return null;
-    }
+//    public ResponseEntity<?> addVote(VoteRequest request) {
+//        return null;
+//    }
+//
+//
+//    public ResponseEntity<?> getAllById(Long id) {
+//        return null;
+//    }
+//
+//    public ResponseEntity<?> updateVote(VoteUpdateRequest request) {
+//        return null;
+//    }
+//
+//    public ResponseEntity<?> deleteVote(Long id) {
+//        return null;
+//    }
 
 
 }

@@ -1,5 +1,7 @@
 package com.batch130.service;
 
+import com.batch130.core.exceptions.ResourceNotFoundException;
+import com.batch130.core.utils.messages.ErrorMessages;
 import com.batch130.entity.concretes.User;
 import com.batch130.payload.request.UserRequest;
 import com.batch130.payload.response.UserResponse;
@@ -37,5 +39,11 @@ public class UserService {
 
     public UserResponse getMyProfile(String username) {
         return null;
+    }
+
+    //!! EntryService icin yazilan metod
+    public User findById(Long id){
+        return userRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.USER_NOT_FOUND,id)));
     }
 }
