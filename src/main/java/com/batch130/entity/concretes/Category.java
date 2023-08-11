@@ -24,7 +24,8 @@ public class Category extends BaseEntity {
 
     private String categoryDetails;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.REFRESH)
-    private List<Entry> entries;
+//!!! sonra yorum satiri kaldirilacak
+//    @OneToMany(mappedBy = "category", cascade = CascadeType.REFRESH)
+//    private List<Entry> entries;
 
 }

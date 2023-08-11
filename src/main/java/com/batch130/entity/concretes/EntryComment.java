@@ -21,8 +21,9 @@ public class EntryComment extends BaseEntity implements Serializable {
     @Column(nullable = false)
     private String content;
 
-    @ManyToOne
-    private Entry entry;
+//!!! sonra yorum satiri kaldirilacak
+//    @ManyToOne
+//    private Entry entry;
 
     @ManyToOne
     private User createdBy;

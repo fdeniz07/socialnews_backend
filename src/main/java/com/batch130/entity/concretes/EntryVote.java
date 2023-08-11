@@ -24,8 +24,9 @@ public class EntryVote extends BaseEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     private VoteType voteType;
 
-    @ManyToOne
-    private Entry entry;
+    //!!! sonra yorum satiri kaldirilacak
+//    @ManyToOne
+//    private Entry entry;
 
 
 
