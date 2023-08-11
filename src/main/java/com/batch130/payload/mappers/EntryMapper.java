@@ -1,15 +1,11 @@
 package com.batch130.payload.mappers;
 
-
 import com.batch130.entity.concretes.Entry;
 import com.batch130.payload.request.EntryRequest;
-import com.batch130.payload.request.EntryRequestForSoftDelete;
 import com.batch130.payload.response.EntryResponse;
 import lombok.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -25,7 +21,6 @@ public class EntryMapper {
         return modelMapper.map(entry, EntryResponse.class);
     }
 
-
     public Entry convertRequestToEntry(EntryRequest entryRequest){
         Entry entry = modelMapper.map(entryRequest, Entry.class);
         entry.setActive(true);
@@ -39,12 +34,13 @@ public class EntryMapper {
         return entry;
     }
 
-    public Entry convertRequestToEntryForSoftDelete(EntryRequestForSoftDelete entryRequest, Long entryId){
-        Entry entry = modelMapper.map(entryRequest, Entry.class);
-        entry.setId(entryId);
-        entry.setActive(false);
-        entry.setDeleted(true);
-        return entry;
-    }
+    //!!!NOT: Biz Soft Delete islemini JPQL ile cözdük. Eger istenirse Mapping sirasinda da 2.bir yol olarak cözülebilir.
+//    public Entry convertRequestToEntryForSoftDelete(EntryRequestForSoftDelete entryRequest, Long entryId){
+//        Entry entry = modelMapper.map(entryRequest, Entry.class);
+//        entry.setId(entryId);
+//        entry.setActive(false);
+//        entry.setDeleted(true);
+//        return entry;
+//    }
 
 }
