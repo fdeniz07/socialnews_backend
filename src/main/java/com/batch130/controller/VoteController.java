@@ -18,10 +18,10 @@ public class VoteController {
 
     private final VoteService voteService;
 
-    @PostMapping("/add")
-    public ResponseEntity<?> addVote(@Valid @RequestBody VoteRequest request) {
-        return voteService.addVote(request);
-    }
+//    @PostMapping("/add")
+//    public ResponseEntity<?> addVote(@Valid @RequestBody VoteRequest request) {
+//        return voteService.addVote(request);
+//    }
 
 
     /**
@@ -29,21 +29,21 @@ public class VoteController {
      * @param id
      * @return page or list
      */
-    @GetMapping("/all/{id}")
-    public ResponseEntity<?> getAllById(@PathVariable("id") Long id) {
-        return voteService.getAllById(id);
-    }
+//    @GetMapping("/all/{id}")
+//    public ResponseEntity<?> getAllById(@PathVariable("id") Long id) {
+//        return voteService.getAllById(id);
+//    }
 
-    @PatchMapping("/update/{id}")
-    public ResponseEntity<?> updateVote(
-            @PathVariable("id") Long id, @Valid @RequestBody VoteUpdateRequest request
-    ) {
-        return voteService.updateVote(request);
-    }
+//    @PatchMapping("/update/{id}")
+//    public ResponseEntity<?> updateVote(
+//            @PathVariable("id") Long id, @Valid @RequestBody VoteUpdateRequest request
+//    ) {
+//        return voteService.updateVote(request);
+//    }
 
-    @DeleteMapping
-    public ResponseEntity<?> deleteVote(@PathVariable("id") Long id) {
-        return voteService.deleteVote(id);
-    }
+//    @DeleteMapping
+//    public ResponseEntity<?> deleteVote(@PathVariable("id") Long id) {
+//        return voteService.deleteVote(id);
+//    }
 
 }
