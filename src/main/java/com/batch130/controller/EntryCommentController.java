@@ -22,7 +22,7 @@ public class EntryCommentController {
 
     private final EntryCommentService service;
 
-    private final EntryService entryService;
+
 
     // Not :  Delete() ****************************************************
     @DeleteMapping("/delete/{entryComment}")

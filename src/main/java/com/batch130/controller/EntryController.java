@@ -2,7 +2,6 @@ package com.batch130.controller;
 
 import com.batch130.core.utils.responseMessage.ResponseMessage;
 import com.batch130.payload.request.EntryRequest;
-import com.batch130.payload.request.EntryRequestForSoftDelete;
 import com.batch130.payload.response.EntryResponse;
 import com.batch130.service.EntryService;
 import jakarta.validation.Valid;
@@ -21,13 +20,14 @@ public class EntryController {
 
     private final EntryService entryService;
 
+    //NOT: add()***************************************************************
     @PostMapping("/add")
     public ResponseEntity<EntryResponse> add(@RequestBody @Valid EntryRequest entryRequest) {
 
         return ResponseEntity.ok(entryService.add(entryRequest));
-
     }
 
+    //NOT: getAllEntry()***************************************************************
     @GetMapping("/getAll")
     public List<EntryResponse> getAllEntry() {
 
@@ -36,27 +36,29 @@ public class EntryController {
         //test
     }
 
+    //NOT: getByUserEntry()***************************************************************
     @GetMapping("/getByUserId/{id}")
     public List<EntryResponse> getAllByUserId(@PathVariable Long id) {
 
         return entryService.getByUserId(id);
     }
 
+    //NOT: update()***************************************************************
     @PutMapping("/update/{entryId}")
     public ResponseMessage<EntryResponse> updateEntry(@PathVariable Long entryId,
                                                       @RequestBody @Valid EntryRequest request) {
         return entryService.update(entryId, request);
     }
 
+    //NOT: softDelete()***************************************************************
     @PutMapping("/delete/{entryId}")
-    public ResponseMessage<EntryResponse> deleteEntry(@PathVariable Long entryId,
-                                          @RequestBody @Valid EntryRequestForSoftDelete request) {
-        return entryService.softDelete(entryId, request);
+    public ResponseMessage<?> deleteEntry(@PathVariable Long entryId) {
+        return entryService.softDelete(entryId);
     }
 
-//    @DeleteMapping("/delete/{entryId}")
-//    public ResponseMessage<?> deleteEntry(@PathVariable Long entryId,
-//                                          @RequestBody @Valid EntryRequest request) {
-//        return entryService.softDelete(entryId, request);
-//    }
+    //NOT: hardDelete()***************************************************************
+    @DeleteMapping("/hardDelete/{entryId}")
+    public ResponseMessage<?> deleteEntryFromDB(@PathVariable Long entryId) {
+        return entryService.hardDelete(entryId);
+    }
 }
