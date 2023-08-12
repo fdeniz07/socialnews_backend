@@ -29,15 +29,16 @@ public class Entry extends BaseEntity implements Serializable {
     @ManyToOne
     private User createdBy;
 
-    // TODO: orphanRemoval ve cascade alanlari arasindaki fark endpointler yazilinca test edilecek!!!
-    @OneToMany(mappedBy = "entry",orphanRemoval = true ,cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) //FetchType: Eager olacak
-    private List<EntryComment> entryComments;
-
-    @OneToMany(mappedBy = "entry", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)//FetchType: Eager olacak
-    private List<EntryVote> entryVotes;
-
-    @OneToMany(mappedBy = "entry", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)//FetchType: Eager olacak
-    private List<EntryFavorite> entryFavorites;
+    //!!! sonra yorum satiri kaldirilacak
+//    // TODO: orphanRemoval ve cascade alanlari arasindaki fark endpointler yazilinca test edilecek!!!
+//    @OneToMany(mappedBy = "entry",orphanRemoval = true ,cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) //FetchType: Eager olacak
+//    private List<EntryComment> entryComments;
+//
+//    @OneToMany(mappedBy = "entry", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)//FetchType: Eager olacak
+//    private List<EntryVote> entryVotes;
+//
+//    @OneToMany(mappedBy = "entry", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)//FetchType: Eager olacak
+//    private List<EntryFavorite> entryFavorites;
 
     private Integer viewCount;
 
@@ -45,8 +46,9 @@ public class Entry extends BaseEntity implements Serializable {
 
     private String thumbnail;
 
-    @OneToMany(mappedBy = "entry", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)//FetchType: Eager olacak
-    private List<Image> image;
+    //!!! sonra yorum satiri kaldirilacak
+//    @OneToMany(mappedBy = "entry", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)//FetchType: Eager olacak
+//    private List<Image> image;
 
     private String seoAuthor;
 
@@ -54,8 +56,9 @@ public class Entry extends BaseEntity implements Serializable {
 
     private String seoTags;
 
-    @ManyToOne()
-    private Category category;
+    //!!! sonra yorum satiri kaldirilacak
+//    @ManyToOne()
+//    private Category category;
 
 
 }
