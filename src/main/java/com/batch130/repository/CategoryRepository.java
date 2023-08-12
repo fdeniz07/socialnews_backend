@@ -1,0 +1,7 @@
+package com.batch130.repository;
+
+import com.batch130.entity.concretes.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CategoryRepository extends JpaRepository<Category,Long> {
+}
